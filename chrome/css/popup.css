@@ -1,0 +1,7 @@
+body {
+  width: 640px;
+}
+
+.form .control-group {
+    margin-bottom: 2px;
+}

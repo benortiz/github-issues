@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <title>Options</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
+  <link href="css/popup.css" rel="stylesheet" media="screen">
+</head>
+<body>
+  <div class="alert alert-success" role="alert" id="status"></div>
+  <div class="control-group">
+    <label class="control-label" for="issue_repository">Repository</label>
+    <div class="controls">
+      <select id="issue_repository" class="span6">
+        <option value="-">-----</option>
+      </select>
+    </div>
+  </div>
+  <button id="save">Save</button>
+  <script src="js/jquery-2.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-markdown.js"></script>
+  <script src="js/lib/base64.js"></script>
+  <script src="js/lib/underscore-min.js"></script>
+  <script src="js/github.js"></script>
+  <script src="js/options.js"></script>
+</body>
+</html>

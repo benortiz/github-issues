@@ -1,0 +1,58 @@
+{
+  "manifest_version": 2,
+  "name": "Send to GitHub",
+  "version": "1.0",
+  "description": "Chrome Extension to Send Issues to GitHub.",
+  "icons": { "16": "img/GitHub-Mark-32px.png",
+           "48": "img/GitHub-Mark-64px.png",
+          "128": "img/GitHub-Mark-120px-plus.png" },
+  "browser_action": {
+    "default_icon": {
+      "19": "img/GitHub-Mark-32px.png",
+      "38": "img/GitHub-Mark-32px.png"
+    },
+    "default_title": "Send to GitHub",
+    "default_popup": "popup.html"
+  },
+
+  "author": "Rami Sayar",
+  "homepage_url": "https://github.com/sayar/send-to-github",
+  "minimum_chrome_version": "20",
+
+  //TODO
+  //"key": "publicKey",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "css": [],
+      "js": ["js/content_script.js"]
+    }
+  ],
+
+  "offline_enabled": false,
+
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+
+  "permissions": [
+    "storage",
+    "tabs",
+    "*://*/*"
+  ]
+  //"platforms": ...,
+
+  //"sandbox": [...],
+  //"script_badge": ...,
+  //"signature": ...,
+  //"spellcheck": ...,
+  //"storage": {
+  //  "managed_schema": ...
+  //},
+  //"system_indicator": ...,
+
+  //"update_url": "http://path/to/updateInfo.xml",
+  //"web_accessible_resources": [...]
+}
