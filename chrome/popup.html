@@ -12,12 +12,12 @@
     <h3 id="extension_title">Github Issues</h3>
 
 <!-- LOGIN FORM -->
-    <div id="login_form" class="span6">
+    <div id="login_form" class="col-md-12">
       <form class="form">
         <fieldset>
-          <p>Credentials are stored in local storage
+          <p class="row">Credentials are stored in local storage
             and are never transmitted over the internet.</p>
-          <div class="control-group">
+          <div class="control-group row">
             <label class="control-label"
             for="credentials_user">Username</label>
             <div class="controls">
@@ -25,15 +25,15 @@
               placeholder="GitHub Username.">
             </div>
           </div>
-          <div class="control-group">
+          <div class="control-group row">
             <label class="control-label"
             for="credentials_pass">Password</label>
             <div class="controls">
               <input type="password" id="credentials_pass"
-              placeholder="GitHub Username.">
+              placeholder="GitHub Password.">
             </div>
           </div>
-          <div class="form-actions">
+          <div class="form-actions row">
             <button id="credentials_save" type="submit"
             class="btn btn-block btn-primary">Save Credentials</button>
           </div>
@@ -43,29 +43,29 @@
 
 
 <!-- SUBMIT ISSUE -->
-    <div id="issue_form" class="span6">
+    <div id="issue_form" class="col-md-12">
       <form class="form">
         <fieldset>
-          <div class="control-group">
+          <div class="control-group row">
             <label class="control-label" for="issue_title" id="issue_title_label">Title</label>
             <div class="controls">
-              <input type="text" id="issue_title" class="span6"
+              <input type="text" id="issue_title"
               autocomplete="off" placeholder="Title for issue.">
             </div>
           </div>
-          <div class="control-group">
+          <div class="control-group row">
             <label class="control-label" for="issue_body">Description</label>
-            <div class="controls">
+            <div class="controls md-override">
               <textarea id="issue_body" rows="3"></textarea>
             </div>
           </div>
-          <div class="control-group">
+          <div class="control-group row">
             <label class="control-label" for="issue_assignee">Assignee</label>
             <div class="controls">
               <div class="input-prepend">
                 <span class="add-on">@</span>
-                <input class="span2" id="issue_assignee" type="text"
-                class="span6" autocomplete="off" placeholder="Assignee for issue.">
+                <input id="issue_assignee" type="text"
+                 autocomplete="off" placeholder="Assignee for issue.">
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@
     </div>
 
 <!-- CONFIRMATION PAGE -->
-    <div id="confirmation_page" class="hide span4">
+    <div id="confirmation_page" class="hide">
       <a href="http://thecatapi.com">Powered by The Cat Api.</a>
       <h3 id="confirmation_status">Working...</h3>
     </div>

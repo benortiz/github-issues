@@ -2,6 +2,33 @@ body {
   width: 640px;
 }
 
+#credentials_save,
+#issue_create {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+/* input box */
+#issue_title {
+  width: 100%;
+}
+
 .form .control-group {
-    margin-bottom: 2px;
+    margin-bottom: 10px;
+}
+
+
+/* MARKDOWN OVERRIDES */
+/* overrides .btn-toolbar from bootstrap */
+.md-override .btn-toolbar {
+  margin-left: 0px !important;
+}
+
+.md-override .md-preview,
+.md-override textarea {
+  padding: 5px 10px;
+}
+
+.md-override textarea {
+  background-color: #FFFFFF;
 }
