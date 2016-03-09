@@ -5,6 +5,12 @@ $(function(){
       $("#login_form").addClass("hide");
       $("#issue_form").removeClass("hide");
 
+      if (items.hasOwnProperty("currentRepo")) {
+        $("#extension_title").text("Submit to "+items.currentRepo);
+      } else {
+        // PROMPT TO SELECT
+      }
+
       $("#issue_body").markdown({fullscreen: {enable:false},
         onShow: function(e){
           chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
