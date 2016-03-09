@@ -1,111 +1,101 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Send to GitHub</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
-        <link href="css/popup.css" rel="stylesheet" media="screen">
-    </head>
-    <body class=col-md-12>
-        <div class="container-fluid">
-            <h3>Send to GitHub</h3>
-            <div id="login_form" class="span6">
-                <form class="form">
-                    <fieldset>
-                        <p>Credentials are stored in local storage
-                        and are never transmitted over the internet.</p>
-                        <div class="control-group">
-                            <label class="control-label"
-                                for="credentials_user">Username</label>
-                            <div class="controls">
-                                <input type="text" id="credentials_user"
-                                    placeholder="GitHub Username.">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label"
-                                for="credentials_pass">Password</label>
-                            <div class="controls">
-                                <input type="password" id="credentials_pass"
-                                    placeholder="GitHub Username.">
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button id="credentials_save" type="submit"
-                                class="btn btn-block btn-primary">Save Credentials</button>
-                        </div>
-                    <fieldset>
-                </form>
+<head>
+  <title>Github Issues</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
+  <link href="css/popup.css" rel="stylesheet" media="screen">
+</head>
+<body>
+  <div class="col-md-12">
+    <h3 id="extension_title">Github Issues</h3>
+
+<!-- LOGIN FORM -->
+    <div id="login_form" class="span6">
+      <form class="form">
+        <fieldset>
+          <p>Credentials are stored in local storage
+            and are never transmitted over the internet.</p>
+          <div class="control-group">
+            <label class="control-label"
+            for="credentials_user">Username</label>
+            <div class="controls">
+              <input type="text" id="credentials_user"
+              placeholder="GitHub Username.">
             </div>
-            <div id="issue_form" class="span6">
-                <form class="form">
-                    <fieldset>
-                    <!-- <div class="control-group">
-                        <label class="control-label" for="issue_repository">Repository</label>
-                        <div class="controls">
-                            <select id="issue_repository" class="span6">
-                                <option value="-">-----</option>
-                            </select>
-                        </div>
-                    </div> -->
-                    <div class="control-group">
-                        <label class="control-label" for="issue_title">Title</label>
-                        <div class="controls">
-                            <input type="text" id="issue_title" class="span6"
-                                autocomplete="off" placeholder="Title for issue.">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="issue_body">Description</label>
-                        <div class="controls">
-                            <textarea id="issue_body" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="issue_assignee">Assignee</label>
-                        <div class="controls">
-                            <div class="input-prepend">
-                                <span class="add-on">@</span>
-                                <input class="span2" id="issue_assignee" type="text"
-                                    class="span6" autocomplete="off" placeholder="Assignee for issue.">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="control-group">
-                        <label class="control-label"
-                            for="issue_milestone">Milestone</label>
-                        <div class="controls">
-                            <select id="issue_milestone" class="span6"></select>
-                        </div>
-                    </div> -->
-                    <!-- <div class="control-group">
-                        <label class="control-label" for="issue_labels">Labels</label>
-                        <div class="controls">
-                            <input type="text" id="issue_labels" class="span6"
-                                placeholder="Labels for issue.">
-                        </div>
-                    </div> -->
-                    <div class="form-actions">
-                        <button id="issue_create" type="submit"
-                            class="btn btn-block btn-primary">Send to GitHub</button>
-                    </div>
-                    </fieldset>
-                </form>
+          </div>
+          <div class="control-group">
+            <label class="control-label"
+            for="credentials_pass">Password</label>
+            <div class="controls">
+              <input type="password" id="credentials_pass"
+              placeholder="GitHub Username.">
             </div>
-            <div id="confirmation_page" class="hide span4">
-                <a href="http://thecatapi.com">Powered by The Cat Api.</a>
-                <h3 id="confirmation_status">Working...</h3>
+          </div>
+          <div class="form-actions">
+            <button id="credentials_save" type="submit"
+            class="btn btn-block btn-primary">Save Credentials</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+
+<!-- SUBMIT ISSUE -->
+    <div id="issue_form" class="span6">
+      <form class="form">
+        <fieldset>
+          <div class="control-group">
+            <label class="control-label" for="issue_title" id="issue_title_label">Title</label>
+            <div class="controls">
+              <input type="text" id="issue_title" class="span6"
+              autocomplete="off" placeholder="Title for issue.">
             </div>
-        </div>
-        <script src="js/jquery-2.2.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/markdown.js"></script>
-        <script src="js/bootstrap-markdown.js"></script>
-        <script src="js/bootstrap3-typeahead.min.js"></script>
-        <script src="js/lib/base64.js"></script>
-        <script src="js/lib/underscore-min.js"></script>
-        <script src="js/github.js"></script>
-        <script src="js/popup.js"></script>
-    </body>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="issue_body">Description</label>
+            <div class="controls">
+              <textarea id="issue_body" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="issue_assignee">Assignee</label>
+            <div class="controls">
+              <div class="input-prepend">
+                <span class="add-on">@</span>
+                <input class="span2" id="issue_assignee" type="text"
+                class="span6" autocomplete="off" placeholder="Assignee for issue.">
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button id="issue_create" type="submit"
+            class="btn btn-block btn-primary">Send to GitHub</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+<!-- CONFIRMATION PAGE -->
+    <div id="confirmation_page" class="hide span4">
+      <a href="http://thecatapi.com">Powered by The Cat Api.</a>
+      <h3 id="confirmation_status">Working...</h3>
+    </div>
+
+  </div><!-- end col-12 -->
+
+
+  <script src="js/jquery-2.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/markdown.js"></script>
+  <script src="js/bootstrap-markdown.js"></script>
+  <script src="js/bootstrap3-typeahead.min.js"></script>
+  <script src="js/lib/base64.js"></script>
+  <script src="js/lib/underscore-min.js"></script>
+  <script src="js/github.js"></script>
+  <script src="js/popup.js"></script>
+
+
+</body>
 </html>
