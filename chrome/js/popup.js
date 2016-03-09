@@ -1,5 +1,5 @@
 $(function(){
-  chrome.storage.sync.get(["credentials_user", "credentials_pass", "currentRepo"], function(items){
+  chrome.storage.local.get(["credentials_user", "credentials_pass", "currentRepo"], function(items){
     if(items.hasOwnProperty("credentials_user") &&
     items.hasOwnProperty("credentials_pass")){
       $("#login_form").addClass("hide");
@@ -99,7 +99,7 @@ $(function(){
         $("#issue_form").addClass("hide");
 
         $("#credentials_save").click(function(event){
-          chrome.storage.sync.set({
+          chrome.storage.local.set({
             "credentials_user": $("#credentials_user").val(),
             "credentials_pass": $("#credentials_pass").val()
           }, function(){

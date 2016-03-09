@@ -1,4 +1,4 @@
-chrome.storage.sync.get(["credentials_user", "credentials_pass"], function(items){
+chrome.storage.local.get(["credentials_user", "credentials_pass"], function(items){
 
   // LOGIN
   var github = new Github({
@@ -25,7 +25,7 @@ chrome.storage.sync.get(["credentials_user", "credentials_pass"], function(items
 
 function save_options() {
   var repo = document.getElementById('issue_repository').value;
-  chrome.storage.sync.set({
+  chrome.storage.local.set({
     currentRepo: repo,
   }, function() {
     // Update status to let user know options were saved.
@@ -38,8 +38,8 @@ function save_options() {
 }
 
 function restore_options() {
-  chrome.storage.sync.get({
-    currentRepo: '',
+  chrome.storage.local.get({
+    currentRepo: 'Loading ...',
   }, function(items) {
     var option_html = $('#issue_repository')
     option_html.val(items.currentRepo);
