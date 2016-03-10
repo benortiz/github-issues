@@ -13,7 +13,7 @@ $(function(){
 
       $("#issue_body").markdown({fullscreen: {enable:false},
         onShow: function(e){
-          chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+          chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
             var tab = tabs[0];
             e.setContent("Source: " + "["+tab.title+"]"+"("+tab.url+")");
           });
@@ -40,10 +40,10 @@ $(function(){
         var repo = github.getRepo(repo_name.split("/", 2)[0],
         repo_name.split("/", 2)[1]);
 
-        repo.listAssignees(function(err, assignees){
+        repo.contributors(function(err, assignees){
           var assi = [];
           for(var i in assignees){
-            assi.push(assignees[i].login);
+            assi.push(assignees[i].author.login);
           }
           $('#issue_assignee').typeahead({source:assi});
         });
@@ -76,8 +76,8 @@ $(function(){
         //     data.milestone = $("#issue_milestone option:selected:first").val();
         // }
 
-        var issue = github.getIssue(repo_name.split("/", 2)[0],
-        repo_name.split("/", 2)[1], null);
+        var issue = github.getIssues(repo_name.split("/", 2)[0],
+        repo_name.split("/", 2)[1]);
         issue.create(data, function(err, result){
           if(err !== null){
             $("#confirmation_status").text("Fail!");
