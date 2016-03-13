@@ -1,5 +1,5 @@
 body {
-  width: 640px;
+  width: 480px;
 }
 
 #credentials_save,
@@ -11,6 +11,13 @@ body {
 /* input box */
 #issue_title {
   width: 100%;
+}
+
+#go-to-options {
+  position: fixed;
+  top: 25px;
+  right: 20px;
+  font-size: 18px;
 }
 
 .form .control-group {
