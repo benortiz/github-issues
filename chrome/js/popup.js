@@ -121,9 +121,4 @@ $(function(){
         });
       }
     });
-
-  $.get("http://thecatapi.com/api/images/get?format=html&results_per_page=1",
-  function(data, textStatus, jqXHR) {
-    $("#confirmation_page").prepend(data);
   });
-});
