@@ -9,10 +9,9 @@
 </head>
 <body>
   <div class="col-md-12">
-    <h3 id="extension_title">Github Issues</h3>
-
 <!-- LOGIN FORM -->
     <div id="login_form" class="col-md-12">
+      <h3 id="extension_title">Github Issues</h3>
       <form class="form">
         <fieldset>
           <p class="row">Credentials are stored in local storage
@@ -44,6 +43,11 @@
 
 <!-- SUBMIT ISSUE -->
     <div id="issue_form" class="col-md-12 hide">
+      <h3 id="form_title">Repository
+        <select id="issue_repository">
+          <option value="-">...</option>
+        </select>
+      </h3>
       <span id="go-to-options" class="glyphicon glyphicon-cog pull-right"></span>
       <form class="form">
         <fieldset>

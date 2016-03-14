@@ -15,11 +15,11 @@ $(function(){
       $("#login_form").addClass("hide");
       $("#issue_form").removeClass("hide");
 
-      if (items.hasOwnProperty("currentRepo")) {
-        $("#extension_title").text("Submit to "+items.currentRepo);
-      } else {
-        // PROMPT TO SELECT
-      }
+      // if (items.hasOwnProperty("currentRepo")) {
+      //   $("#form_title").text("Submit to "+items.currentRepo);
+      // } else {
+      //   // PROMPT TO SELECT
+      // }
 
       $("#issue_body").markdown({fullscreen: {enable:false},
         onShow: function(e){
@@ -35,41 +35,79 @@ $(function(){
         "password": items.credentials_pass,
         "auth": "basic"
       });
-      var user = github.getUser();
-      // user.repos(function(err, repos){
-      //   for(var i in repos){
-      //     var repo = repos[i];
-      //     $("#issue_repository").append(new Option(repo.full_name,
-      //       repo.full_name, false, false));
-      //     }
-      //   });
-        // $("#issue_repository").change(function(e){
-        //   $("#issue_repository option:selected").each(function () {
-      var repo_name = items.currentRepo;
-      if(repo_name !== "-"){
-        var repo = github.getRepo(repo_name.split("/", 2)[0],
-        repo_name.split("/", 2)[1]);
 
-        repo.contributors(function(err, assignees){
-          var assi = [];
-          for(var i in assignees){
-            assi.push(assignees[i].author.login);
+      var user = github.getUser();
+
+      user.repos(function(err, repos){
+        // Get the list of repos
+        for(var i in repos){
+          var repo = repos[i];
+          $("#issue_repository").append(new Option(repo.full_name,
+            repo.full_name, false, false));
+        }
+
+        // If there is a repo previously selected, set it and add contributors.
+        if (items.hasOwnProperty("currentRepo")) {
+
+          console.log("1 " + items.currentRepo);
+
+          var option_html = $('#issue_repository');
+          option_html.val(items.currentRepo);
+
+          var repo_name = items.currentRepo;
+
+          var repo = github.getRepo(repo_name.split("/", 2)[0],
+          repo_name.split("/", 2)[1]);
+
+          console.log("1 " + repo);
+
+          repo.contributors(function(err, assignees){
+            var assi = [];
+            for(var i in assignees){
+              assi.push(assignees[i].author.login);
+            }
+            console.log("1 " + assi)
+            $('#issue_assignee').typeahead({source:assi});
+          });
+        }
+
+      });
+
+      // If the repo changes, save it and set the contributors.
+      $("#issue_repository").change(function(e){
+        $("#issue_repository option:selected").each(function () {
+
+          var repo_name = $("#issue_repository option:selected:first").val();
+          console.log("2 " + repo_name);
+
+          if(repo_name !== "-"){
+            chrome.storage.local.set({currentRepo: repo_name});
+            var repo = github.getRepo(repo_name.split("/", 2)[0],
+            repo_name.split("/", 2)[1]);
+            console.log("2 " + repo);
+
+            repo.contributors(function(err, assignees){
+              var assi = [];
+              for(var i in assignees){
+                assi.push(assignees[i].author.login);
+              }
+              console.log("2 " + assi)
+              $('#issue_assignee').typeahead('destroy')
+              $('#issue_assignee').typeahead({source:assi});
+            });
+            // repo.listMilestones(function(err, milestones){
+            // for(var i in milestones){
+            //   var mile = milestones[i];
+            //   $("#issue_milestone").append(new Option(mile.title,
+            //     mile.number, false, false));
+            //   }
+            // });
           }
-          $('#issue_assignee').typeahead({source:assi});
         });
-        // repo.listMilestones(function(err, milestones){
-        //   for(var i in milestones){
-        //     var mile = milestones[i];
-        //     $("#issue_milestone").append(new Option(mile.title,
-        //       mile.number, false, false));
-        //     }
-        //   });
-      }
-          //   });
-          // });
+      });
 
       $("#issue_create").click(function(event){
-        // var repo_name = $("#issue_repository option:selected:first").val();
+        var repo_name = $("#issue_repository option:selected:first").val();
 
         var data = {
           title: $("#issue_title").val() != "" ? $("#issue_title").val() : "New Issue",
